@@ -1,0 +1,41 @@
+{% extends "ekzamenator/basic.html" %}
+{% block content %}
+{% for p1 in users_list %}
+
+<table align="center">
+<tr class='ts1'>
+<td class="td1">{{ p1.nomer }}</td>
+<td class="td4"><a href="{{ p1.get_absolute_url }}" class="editContent">{{ p1.name }}</a></td>
+<td class="td3">{{ p1.uch }}</td>
+<td class="td4">{{ p1.pp }}</td>
+<td class="td5">{{ p1.shu }}</td>
+<td class="td6">{{ p1.prof }}.</td>
+<td class="td3">{{ p1.id }}</td></tr>
+<tr>
+
+</table>
+
+{% endfor %}
+<h5>
+    Найдено :{{ page_obj.paginator.count }} - человек на странице :{{ users_list.count }}
+</h5>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следущея</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+{% block title %}
+
+{% endblock %}
