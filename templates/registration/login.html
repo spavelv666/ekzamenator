@@ -1,0 +1,21 @@
+{% extends "ekzamenator/basic.html" %}
+{% block content %}
+
+<h2>Вход</h2>
+<form method="post">
+{% csrf_token %}
+    {% if user.is_authenticated %}
+    <p>Вы уже и так на вошли</p>
+    {% else %}
+
+{{ form.as_p }}
+<input type="hidden" name="next" value="{{ next }}">
+<input type="submit" vаluе="Войти">
+</form>
+
+{% endif %}
+
+{% endblock %}
+{% block title %}
+Вход
+{% endblock %}

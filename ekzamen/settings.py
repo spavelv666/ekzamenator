@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ekzamenator',
+ #   'userprofile',
 ]
 
 MIDDLEWARE = [
@@ -106,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+LOGIN_URL='login'
+LOGIN_REDIRECT_URL ='akzamen:index'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 

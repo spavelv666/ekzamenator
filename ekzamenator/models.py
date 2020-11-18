@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+
 
 class Shu(models.Model):
     """шахтоуправление"""
@@ -55,7 +57,7 @@ class Uch(models.Model):
 class Users(models.Model):
     """Люди"""
     name = models.CharField("Фамилия И.О.", max_length=150)
-    nomer = models.PositiveIntegerField("Номер")
+    nomer = models.PositiveIntegerField("Номер", unique=True)
     prof = models.ForeignKey(
         Prof, verbose_name="Проффесия", on_delete=models.SET_NULL, null=True
     )
@@ -78,9 +80,24 @@ class Users(models.Model):
     def get_review(self):
         return self.reviews_set.filter(parent__isnull=True)
 
+    def get_update_url(self):
+        return reverse("users_update", kwargs={"id": self.id})
+
     class Meta:
         verbose_name = "Человек"
         verbose_name_plural = "Люди"
+
         ordering = ("name", "nomer", "shu", "pp", "uch", "prof")
 
 
+#class UserProfile(models.Model):
+ #   user = models.OneToOneField(User)
+#    avatar = models.ImageField(upload_to='images/users', verbose_name='Изображение')
+#    pp = models.ForeignKey(Pp, verbose_name="Производственое подраздилени", on_delete=models.SET_NULL, null=True)
+
+
+#   def __unicode__(self):
+ #       return self.user
+  #  class Meta:
+   #     verbose_name = 'Профиль'
+    #    verbose_name_plural = 'Профили'

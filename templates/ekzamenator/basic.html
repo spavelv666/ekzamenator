@@ -146,10 +146,10 @@ body {
 
 <ul>
     <li><a href="/" onclick="document.getElementById('/').submit(); return false;">Главная</a></li>
-
-    <li><a href="#">Работник</a>
+{% if user.is_authenticated %}
+    <li><a href="/ekzamen/usersview/">Работник</a>
         <ul>
-            <li><a href="add/">Добавить</a></li>
+            <li><a href="/ekzamen/add/">Добавить</a></li>
             <li><a href="poisk.html" onclick="document.getElementById('poisk').submit(); return false;">Найти</a></li>
         </ul>
     </li>
@@ -160,7 +160,8 @@ body {
             <li><a href="komis.html" onclick="document.getElementById('komis').submit(); return false;">Изменить комиссию</a></li>
         </ul>
     </li>
-    <li><a href="admin.html" onclick="document.getElementById('exit').submit(); return false;">Выход</a></li>
+    {% endif %}
+    <li><a href="/ekzamen/logout/">Выход</a></li>
 </ul>
 <br>
 <section>
