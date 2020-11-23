@@ -29,6 +29,7 @@ class Pp(models.Model):
     shu = models.ForeignKey(
         Shu, verbose_name="Шахто-управление", on_delete=models.SET_NULL, null=True
     )
+    user = models.ForeignKey(User, verbose_name="Пользователь", null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.name}"
 

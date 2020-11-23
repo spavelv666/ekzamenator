@@ -1,26 +1,60 @@
 {% extends "ekzamenator/basic.html" %}
 {% block content %}
-{% for p1 in users_list %}
 
-<table align="center">
-<tr class='ts1'>
-<td class="td1">{{ p1.nomer }}</td>
-<td class="td4"><a href="{{ p1.get_absolute_url }}" class="editContent">{{ p1.name }}</a></td>
-<td class="td3">{{ p1.uch }}</td>
-<td class="td4">{{ p1.pp }}</td>
-<td class="td5">{{ p1.shu }}</td>
-<td class="td6">{{ p1.prof }}.</td>
-<td class="td3">
-    <a href="/ekzamen/update/{{p1.id}}">Изменить</a></td>
-<td class="td3">
-    <a href="/ekzamen/delete/{{p1.id}}">Удалить</a></td>
+
+
+<main class="bg-dark">
+  <div class="container-fluid  bg-dark " style="height: 600px">
+    <div class="row bg-dark ">
+
+<div class="table-responsive shadow">
+
+
+    <table class="table table-bordered bg-dark table-dark table-hover"><thead><tr>
+    <th scope="col">Таб.№</th><th scope="col">Ф.И.О.</th><th scope="col">Участок</th><th scope="col">Профессия</th></tr></thead><tbody>
+
+
+ <!--
+    {% for p1 in users_list %}
+
+<tr>
+<td>{{ p1.nomer }}</td>
+<td><a href="{{ p1.get_absolute_url }}" class="editContent">{{ p1.name }}</a></td>
+<td>{{ p1.uch }}</td>
+    <td>{{ p1.prof }}.</td>
+
+
 
 </tr>
-<tr>
-
-</table>
-
 {% endfor %}
+-->
+{% for p2 in new_users %}
+
+<tr>
+<td>{{ p2.nomer }}</td>
+<td><a href="{{ p2.get_absolute_url }}" class="editContent">{{ p2.name }}</a></td>
+<td>{{ p2.uch }}</td>
+    <td>{{ p2.prof }}.</td>
+
+
+
+</tr>
+{% endfor %}
+
+
+
+</tbody></table>
+</div>
+    </div>
+
+
+
+
+
+    </div>
+</main>
+
+<div  class="text-success">
 <h5>
     Найдено :{{ page_obj.paginator.count }} - человек на странице :{{ users_list.count }}
 </h5>
@@ -40,7 +74,11 @@
         {% endif %}
     </span>
 </div>
+</div>
 {% endblock %}
+
+
+
 {% block title %}
 
 {% endblock %}

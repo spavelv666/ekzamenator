@@ -1,11 +1,37 @@
 {% extends "ekzamenator/basic.html" %}
 {% block title %}Добавление человека{% endblock %}
 {% block content %}
-<center>
+
+ <div class="container  col-12 align-self-start d-flex justify-content-center">
+    <div class="row bg-dark col-4 justify-content-center ">
+
+         <div class="d-flex col-12 justify-content-center text-warning">
+
 <form action="{% url 'UsersCreateView' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Добавить">
+<!--    {{ form.as_p }}-->
+
+     <p>{{ form.name.label}}:<br>{{ form.name }}</p>
+     <p>{{ form.nomer.label}}:<br>{{ form.nomer }}</p>
+    <p>{{ form.prof.label}}:<br>{{ form.prof }}</p>
+    <p>{{ form.uch.label}}:<br>{{ form.uch }}</p>
+
+    {% for p2 in pps %}
+    <input type="hidden" name="pp" class="form-control" id="id_pp" value="{{ p2.id }}">
+     {% endfor %}
+     {% for p2 in shus %}
+    <input type="hidden" name="shu" class="form-control" id="id_shu" value="{{ p2.id }}">
+     {% endfor %}
+<center><input type="submit" value="Добавить"></center>
+
+    {% for p2 in pps %}
+
+              <p>{{ p2.name}}<br></p>
+                 <p>{{ p2.shu}}<br></p>
+             {% endfor %}
 </form>
-</center>
+
+         </div>
+    </div>
+ </div>
     {% endblock %}

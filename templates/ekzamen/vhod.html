@@ -65,7 +65,14 @@ p {
   </form>
 
 <button>Войти</button>
-<p>Ошибка входа, обратитесь к администратору</p>
+<p>Ошибка входа, обратитесь к Pavel</p>
+     	{% for p1 in listings %}
+<h2>
+{{ p1.name }}</h2>
+
+
+{% endfor %}
+
 </div> 
 
 </center>

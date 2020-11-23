@@ -11,15 +11,31 @@ from  django.contrib import auth
 from  django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UsersForm
 from  .models import Users, Pp, Uch, Shu
-
+from django.contrib.auth.models import User
 class UsersView(LoginRequiredMixin, ListView):
    """Список фильмов"""
    model = Users
    queryset = Users.objects.all()
-#   context = {'username': auth.get_user(request).username}
-   #template_name = "ekzamenator/index.html"
-   paginate_by = 2
+  # ppp = Pp.objects.get(name="")
 
+
+   paginate_by = 10
+
+  # def get_context_data(self, **kwargs):
+   #    context = super().get_context_data(**kwargs)
+   #    assert isinstance(context, object)
+   #    context['pp'] = Pp.objects.get(pp_id=1)
+    #   return context
+
+   def get_context_data(self, **kwargs):
+       ppp = Pp.objects.filter(user=self.request.user)
+       new_users = Users.objects.filter(pp=ppp[0])
+       context = super(UsersView, self).get_context_data(**kwargs)
+       # Добавляем новую переменную к контексту и иниуиализируем ее некоторым значением
+    #   pp = Pp.object.all().name
+       context['Ptemp'] = ppp
+       context['new_users'] = new_users
+       return context
 
 class UsersDetailView(LoginRequiredMixin, DetailView):
    """Полное описание фильма"""
@@ -35,15 +51,26 @@ def ekzamen(request):
 
    return render(request, 'ekzamenator/index.html', context)
 
+
 class UsersCreateView(LoginRequiredMixin, CreateView):
    template_name = 'ekzamenator/add_user.html'
    form_class = UsersForm
    success_url = reverse_lazy("Users_View")
 
    def get_context_data(self, **kwargs):
+
       context = super().get_context_data(**kwargs)
       context['users'] = Users.objects.all()
+      ppp = Pp.objects.filter(user=self.request.user)
+      shus= Shu.objects.filter(pp=ppp[0])
+      context['pps'] = ppp
+      context['shus'] = shus
       return context
+
+   def get_form_kwargs(self):
+       kwargs = super(UsersCreateView, self).get_form_kwargs()
+       kwargs.update({'user': self.request.user})
+       return kwargs
 
 class UsersUpdate(LoginRequiredMixin, View):
    def get(self, request, id):
@@ -70,7 +97,29 @@ class UsersDelete(LoginRequiredMixin, View):
       users.delete()
       return redirect(reverse("Users_View"))
 
+class Search(ListView):
+    """Поиск Людей"""
+    paginate_by = 3
+
+    def get_queryset(self):
+        return Users.objects.filter(nomer__icontains=self.request.GET.get("q"))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["q"] = f'q={self.request.GET.get("q")}&'
+        return context
+
 def vhod(request):
-   return render(request, "ekzamen/vhod.html")
+    listings = Pp.objects.all();  # order_by('-name').filter(user__icontains=request.user)
+
+    context = {'listings': listings}
+    return render(request, "ekzamen/vhod.html", context)
+
+def PpViewList(request):
+    listings = Pp.objects.filter(user=request.user)
+    #names = list.listings.name
+    context = {'listings': listings}
+    return render(request, 'ekzamenator/pp_view.html', context)
+
 
 

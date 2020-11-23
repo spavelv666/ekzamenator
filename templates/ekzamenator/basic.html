@@ -2,173 +2,127 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'bboard/style.css' %}">
-<meta http-equiv="Content-Type"
-      content="text/html; charset=utf-8">
 
-<titlе></titlе>
-<style type="text/css">
-ul {
-  list-style: none; /*убираем маркеры списка*/
-  margin: 8px; /*убираем отступы*/
-  padding-left: 0; /*убираем отступы*/
-  margin-top:10px; /*делаем отступ сверху*/
-  background:#CFCFCF; /*добавляем фон всему меню*/
-  height: 50px; /*задаем высоту*/
-  border-radius: 6px;
-}
-a {
-  text-decoration: none; /*убираем подчеркивание текста ссылок*/
-  background:#CFCFCF; /*добавляем фон к пункту меню*/
-  color:#fff; /*меняем цвет ссылок*/
-  padding:0px 20px; /*добавляем отступ*/
-  font-family: arial; /*меняем шрифт*/
-color: #000000;
-font: 12pt arial;
-  border-radius: 6px;
-  line-height:50px; /*ровняем меню по вертикали*/
-  display: block;
-  border-right: 1px solid #828282; /*добавляем бордюр справа*/
-  -moz-transition: all 0.5s 0.01s ease; /*делаем плавный переход*/
-  -o-transition: all 0.5s 0.01s ease;
-  -webkit-transition: all 0.5s 0.01s ease;
-}
-a:hover {
-  background:#9C9C9C;/*добавляем эффект при наведении*/
-}
-li {
-  float:left; /*Размещаем список горизонтально для реализации меню*/
-  position:relative; /*задаем позицию для позиционирования*/
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" type="images/x-icon" href="img/favicon.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="keywords" content="Свердловск, svkmarket, ЛНР, объявления, маркет, покупки, Aliexpress, shop, market, заказы, бизнесс, заработать, разработка сайтов, услуги" />
+<meta name="description" content="Заказы с Aliexpress, выгодное предложение, быстрая доставка, бесплатные объявления, канал Telegram @svkmarker, электронная комерция">
 
-    /*Стили для скрытого выпадающего меню*/
-    li > ul {
-        position:absolute;
-        top:40px;
-        display:none;
-    }
-
-    /*Делаем скрытую часть видимой*/
-    li:hover > ul {
-        display:block;
-        width:250px;  /*Задаем ширину выпадающего меню*/
-    }
-   li:hover > ul > li {
-        float:none; /*Убираем горизонтальное позиционирование*/
-    }
-
-  .block1 {
-    width: 98%;
-    background: #ffffff;
-    padding: 5px;
-    border: solid 2px #000000;
-    border-radius: 8px;
-    float: none;
-    position: relative;
-    top: 0px;
-    left: 5px;
-    font: 28pt arial;
-   }
-  .block2 {
-    width: 98%;
-    background: #ffffff;
-    padding: 5px;
-    border: solid 1px #ffffff;
-    float: none;
-    position: relative;
-    top: 0px;
-    left: 5px;
-    font: 18pt arial;
-   }
-table, th, td
-{
-width:98%;
-border-style:solid;
-border-width:1px;
-border-collapse:collapse;
-padding:2px;
-font-family:arial;
-}
-.tab1
-{
-width:30%;
-border-width:0px;
-border-style: hidden;
-padding:2px;
-text-align:center;
-}
- .td1 {
-    width: 10%; /* Ширина ячейки */
-    height: 35px;
-    text-align:center;
-   }
-
-.td2 {
-    width: 10%; /* Ширина ячейки */
-    text-align:center;
-   }
-
-.td3 {
-    width: 10%; /* Ширина ячейки */
-    text-align:center;
-   }
-
-.td4 {
-    width: 20%; /* Ширина ячейки */
-    text-align:center;
-   }
-.td5 {
-    width: 20%; /* Ширина ячейки */
-    text-align:center;
-   }
-.td6 {
-    width: 15%; /* Ширина ячейки */
-    text-align:center;
-   }
-.td7 {
-    width: 15%; /* Ширина ячейки */
-    text-align:center;
-   }
-.ts1 {background-color:#CFCFCF;}
-body {
-    background-image: url({% static 'images/simple-gray-texture.jpg' %}); /* Путь к фоновому изображению */
-
-   }
-</style>
 </head>
+|<style>
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2vh; /*высота футера будет зависеть от высоты экрана*/
+}
+/* чтобы весь футер заливался */
+
+html,body{
+    height:100%;
+     background-color: #000000;
+}
+
+
+</style>
 <body>
 
-<div class="block1"><center>
-   <img src="{% static 'images/logo_sa_90.jpg' %}">
-    <BR>{% block shu%}ОРГАНИЗАТОР ОБУЧЕНИЯ{% endblock %}<BR>
-{% block title%}шахта Должанская-Капитальная{% endblock %}
-</center></div>
 
-<ul>
-    <li><a href="/" onclick="document.getElementById('/').submit(); return false;">Главная</a></li>
+
+
+
+  <!-- NAV #1 и HEADER -->
+<div class="tbg-dark align-self-start">
+  <div class="container col-12 align-self-start">
+    <div class="row bg-dark  align-self-start">
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark col-12 ">
+
+
+ <!--Название сайта и кнопка раскрытия меню для мобильных-->
+  <!--<div class="navbar-header">-->
+
+  <div class="col-4">
+ <a class="navbar-brand" href="/"><img src="{% static 'logo.png' %}" width="32" height="32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIGITAL LAND</a>
+  </div>
 {% if user.is_authenticated %}
-    <li><a href="/ekzamen/usersview/">Работник</a>
-        <ul>
-            <li><a href="/ekzamen/add/">Добавить</a></li>
-            <li><a href="poisk.html" onclick="document.getElementById('poisk').submit(); return false;">Найти</a></li>
+     <div class="col-4">
+  <form action="{% url 'search' %}" method="get" class="d-flex editContent">
+        <input type="search" placeholder="Введите номер..." name="q" class="form-control" required="">
+        <button type="submit"  class="btn btn-success">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+    </form>
+     </div>
+
+
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+ <span class="navbar-toggler-icon"></span>
+ </button>
+
+ <!--Само меню-->
+
+
+ <div class="collapse navbar-collapse" id="navbarResponsive">
+
+ <ul class="navbar-nav ml-auto  d-flex justify-content-end">
+
+
+        	<li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Работник</a>
+        <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
+          <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
+
+        </div>
+
+            </li>
+
+
+        	<li class="nav-item"><a href="/ekzamen/ppview/" class="nav-link">Отчеты</a></li>
+		<li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
+
+
+		<li class="nav-item"><a href="about.php" class="nav-link">О нас</a></li>
+		<li class="nav-item"><a href="kontakts.php" class="nav-link">Контакты</a></li>
+
+
+		<li class="active nav-item"><a href="{% url 'logout'%}" class="nav-link">Выход</a></li>
         </ul>
-    </li>
- <li><a href="#">Отчёты</a>
-        <ul>
-            <li><a href="protokol.html" onclick="document.getElementById('protokol').submit(); return false;">Протокол</a></li>
-            <li><a href="otchet.html" onclick="document.getElementById('otchet').submit(); return false;">Отчёт за период</a></li>
-            <li><a href="komis.html" onclick="document.getElementById('komis').submit(); return false;">Изменить комиссию</a></li>
-        </ul>
-    </li>
+ </div><!-- /.navbar-collapse -->
     {% endif %}
-    <li><a href="/ekzamen/logout/">Выход</a></li>
-</ul>
-<br>
-<section>
+</nav>
+
+
+      </div>
+
+
+ </div>
+
+     </div>
+{% if user.is_authenticated %}
+  <div class="container bg-dark align-self-start col-12" >
+        <div class="row bg-dark col-12 d-flex justify-content-center" >
+  {% for p1 in Ptemp %}
+     <p class="text-success text-center">Вы вошли как - {{  p1.user  }}-{{ p1.name }} </p>
+
+
+{% endfor %}
+
+        </div>
+  </div>
+  {% endif %}
     {% block content %}
+
     {% endblock %}
-</section>
 
 
-</body>
-</html>
+
+
+
+   {% include 'ekzamenator/footer.html' %}

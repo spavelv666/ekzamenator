@@ -17,9 +17,9 @@ class ShuAdmin(admin.ModelAdmin):
 @admin.register(Pp)
 class PpAdmin(admin.ModelAdmin):
     """Шахта управление"""
-    list_display = ("name", "shu")
-    list_display_links = ("name", "shu")
-    search_fields = ("name", "shu")
+    list_display = ("name", "shu", "user")
+    list_display_links = ("name", "shu", "user")
+    search_fields = ("name", "shu", "user")
 
 @admin.register(Uch)
 class UchAdmin(admin.ModelAdmin):

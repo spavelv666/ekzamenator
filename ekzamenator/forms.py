@@ -1,7 +1,7 @@
 from  django.forms import  ModelForm
 from  django import forms
 from  .models import Users,Pp, Shu, Prof, Uch
-
+from django.contrib.auth.models import User
 class UsersForm(ModelForm):
     name = forms.CharField(label="Фамилия И.О.", max_length=150)
     nomer = forms.IntegerField(label="Номер")
@@ -23,10 +23,16 @@ class UsersForm(ModelForm):
     pp.widget.attrs.update({'class': 'form-control'})
     uch.widget.attrs.update({'class': 'form-control'})
     
-    def __init__(self, *args, **kwargs):
+    def __init__(self,  *args, **kwargs):
+        user = kwargs.pop('user')
         super(UsersForm, self).__init__(*args, **kwargs)
-        self.fields['pp'].queryset = Pp.objects.filter(shu_id=1)
 
+        self.fields['pp'].queryset = Pp.objects.filter(user = user)
+       #user = User.objects.get(id=1)
+        ppp = Pp.objects.filter(user=user)
+
+        self.fields['uch'].queryset = Uch.objects.filter(pp = ppp[0])
+        #self.fields['shu'].queryset = Shu.objects.filter(pp=ppp[0])
     class Meta:
         model = Users
         fields = ('name', 'nomer', 'prof','shu', 'pp', 'uch')
