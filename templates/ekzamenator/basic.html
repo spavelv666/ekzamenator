@@ -11,7 +11,7 @@
 <meta name="keywords" content="Свердловск, svkmarket, ЛНР, объявления, маркет, покупки, Aliexpress, shop, market, заказы, бизнесс, заработать, разработка сайтов, услуги" />
 <meta name="description" content="Заказы с Aliexpress, выгодное предложение, быстрая доставка, бесплатные объявления, канал Telegram @svkmarker, электронная комерция">
 
-</head>
+
 |<style>
 footer {
     position: absolute;
@@ -28,6 +28,8 @@ html,body{
 
 
 </style>
+</head>
+
 <body>
 
 
@@ -35,19 +37,20 @@ html,body{
 
 
   <!-- NAV #1 и HEADER -->
-<div class="tbg-dark align-self-start">
-  <div class="container col-12 align-self-start">
-    <div class="row bg-dark  align-self-start">
+<div class="container col-12">
+	<div class="row bg-dark">
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark col-12 ">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark col-12 fixed-top">
+			<div class="col-4">
 
 
- <!--Название сайта и кнопка раскрытия меню для мобильных-->
-  <!--<div class="navbar-header">-->
 
-  <div class="col-4">
- <a class="navbar-brand" href="/"><img src="{% static 'logo.png' %}" width="32" height="32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIGITAL LAND</a>
-  </div>
+
+				<a class="navbar-brand text-success" href="/"><img src="/static/logo.png" width="32" height="32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   {% for p1 in Ptemp %} {{ p1.name }}{% endfor %}</a>
+
+			</div>
+
 {% if user.is_authenticated %}
      <div class="col-4">
   <form action="{% url 'search' %}" method="get" class="d-flex editContent">
@@ -70,29 +73,41 @@ html,body{
 
  <ul class="navbar-nav ml-auto  d-flex justify-content-end">
 
-
+            <li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
         	<li class="nav-item dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Работник</a>
         <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
-          <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
+             <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
+            <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
+
 
         </div>
 
             </li>
+     <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="/ekzamen/ppview/"  id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Участки</a>
 
+
+       <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+             <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
+            <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
+
+
+        </div>
+</li>
 
         	<li class="nav-item"><a href="/ekzamen/ppview/" class="nav-link">Отчеты</a></li>
-		<li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
 
 
-		<li class="nav-item"><a href="about.php" class="nav-link">О нас</a></li>
-		<li class="nav-item"><a href="kontakts.php" class="nav-link">Контакты</a></li>
 
 
-		<li class="active nav-item"><a href="{% url 'logout'%}" class="nav-link">Выход</a></li>
+     <li class="nav-item"><a href="/" class="nav-link text-info"> {% for p1 in Ptemp %} {{ p1.user }}{% endfor %}</a></li>
+
+
+		<li class="active nav-item"><a href="{% url 'logout'%}" class="nav-link ">Выход</a></li>
         </ul>
  </div><!-- /.navbar-collapse -->
     {% endif %}
@@ -101,10 +116,8 @@ html,body{
 
       </div>
 
-
  </div>
-
-     </div>
+<!--
 {% if user.is_authenticated %}
   <div class="container bg-dark align-self-start col-12" >
         <div class="row bg-dark col-12 d-flex justify-content-center" >
@@ -114,13 +127,18 @@ html,body{
 
 {% endfor %}
 
-        </div>
-  </div>
   {% endif %}
+  -->
+  <!--
+  начало блока
+  -->
+
     {% block content %}
 
     {% endblock %}
-
+  <!--
+  конец блока
+  -->
 
 
 

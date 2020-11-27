@@ -3,10 +3,10 @@ from  django import forms
 from  .models import Users,Pp, Shu, Prof, Uch
 from django.contrib.auth.models import User
 class UsersForm(ModelForm):
-    name = forms.CharField(label="Фамилия И.О.", max_length=150)
-    nomer = forms.IntegerField(label="Номер")
+    name = forms.CharField(label="Ф.И.О.", max_length=150)
+    nomer = forms.IntegerField(label="Таб.№")
     prof = forms.ModelChoiceField(queryset= Prof.objects.all(),
-                                   label="Проффесия")
+                                   label="Профессия")
     uch = forms.ModelChoiceField(queryset=Uch.objects.all(),
                                   label="Участок")
 
@@ -14,7 +14,7 @@ class UsersForm(ModelForm):
                                  label='Шахто управление', help_text='Не забудьту задать шахтоуправление!',
                                  initial = 1, widget=forms.widgets.Select(attrs={'size': 1}))
     pp = forms.ModelChoiceField(queryset=Pp.objects.all(),
-                                 label="Производственое подраздилени")
+                                 label="Шахта")
 
     name.widget.attrs.update({'class': 'form-control'})
     nomer.widget.attrs.update({'class': 'form-control'})
@@ -36,3 +36,23 @@ class UsersForm(ModelForm):
     class Meta:
         model = Users
         fields = ('name', 'nomer', 'prof','shu', 'pp', 'uch')
+
+class UpdateForm(forms.ModelForm):
+    """ Форма добавления тикетов
+    """
+    name = forms.CharField(label="Ф.И.О.", max_length=150)
+    nomer = forms.IntegerField(label="Таб.№")
+    prof = forms.ModelChoiceField(queryset=Prof.objects.all(),
+                                  label="Профессия")
+    shu = forms.ModelChoiceField(queryset=Shu.objects.all(),
+                                 label='Шахто управление', widget=forms.widgets.Select(
+            attrs={'class': 'disabled', 'readonly': 'readonly'}))
+    uch = forms.ModelChoiceField(queryset=Uch.objects.all(),
+                                 label="Участок")
+    name.widget.attrs.update({'class': 'form-control flex-fill'})
+    nomer.widget.attrs.update({'class': 'form-control flex-fill'})
+    prof.widget.attrs.update({'class': 'form-control flex-fill'})
+    uch.widget.attrs.update({'class': 'form-control flex-fill'})
+    class Meta:
+        model = Users
+        fields = ('name', 'nomer', 'prof', 'shu', 'pp', 'uch')

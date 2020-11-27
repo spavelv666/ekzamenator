@@ -2,22 +2,45 @@
 {% block content %}
 
 
+<div class="row col-12 justify-content-center mt-5">
+	<div class="shadow-lg card shadow-lg border-success text-white-50 bg-dark py-2 px-2 mt-3 " style="width: 22rem;">
+<center>
+				<H3>Сведения о работнике</H3>
+		<p>Таб.№ - {{ users.nomer }}</p>
+<p>Ф.И.О. - {{ users.name }}</p>
 
 
+<p>Участок - {{ users.uch }}</p>
 
-<h2>{{ users.nomer }}</h2>
-<h1>{{ users.name }}</h1>
-<h3>{{ users.uch }}</h3>
-<h4>{{ users.pp }}</h4>
-<h4>{{ users.shu }}</h4>
-<h4>{{ users.prof }}.</h4>
-<h5>{{ users.id }}</h5>
+<p>Профессия - {{ users.prof }}.</p>
+	<!--
+<p>{{ users.pp }}</p>
+<p>{{ users.shu }}</p>
+
+-->
+<!--<h5>{{ users.id }}</h5>-->
+<div class="row mx-auto ">
+    <div class="col-sm">
+
+        <a class="btn btn-secondary" href="/ekzamen/usersview/"  role="button">Назад</a>
 
 
+	        <a class="btn btn-warning" href="{% url 'users_update' pk=users.id %}" role="button">Изменить</a>
 
-<h5>
 
-</h5>
+                 <a class="btn btn-danger" href="/ekzamen/delete/{{users.id}}" role="button">Удалить</a>
+
+	</div>
+
+</div>
+</center>
+
+
+	</div>
+
+
+</div>
+
 
 
 {% endblock %}

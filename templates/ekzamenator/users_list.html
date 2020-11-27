@@ -5,29 +5,29 @@
 
 <main class="bg-dark">
   <div class="container-fluid  bg-dark " style="height: 600px">
-    <div class="row bg-dark ">
+    <div class="row bg-dark mt-4">
 
-<div class="table-responsive shadow">
+<div class="table-responsive shadow py-4">
 
 
     <table class="table table-bordered bg-dark table-dark table-hover"><thead><tr>
     <th scope="col">Таб.№</th><th scope="col">Ф.И.О.</th><th scope="col">Участок</th><th scope="col">Профессия</th></tr></thead><tbody>
 
 
- <!--
+
     {% for p1 in users_list %}
 
 <tr>
 <td>{{ p1.nomer }}</td>
 <td><a href="{{ p1.get_absolute_url }}" class="editContent">{{ p1.name }}</a></td>
 <td>{{ p1.uch }}</td>
-    <td>{{ p1.prof }}.</td>
+    <td>{{ p1.prof }}</td>
 
 
 
 </tr>
-{% endfor %}
--->
+{% endfor %}<!--
+
 {% for p2 in new_users %}
 
 <tr>
@@ -40,7 +40,7 @@
 
 </tr>
 {% endfor %}
-
+-->
 
 
 </tbody></table>

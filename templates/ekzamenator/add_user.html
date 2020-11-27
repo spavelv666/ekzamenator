@@ -2,10 +2,8 @@
 {% block title %}Добавление человека{% endblock %}
 {% block content %}
 
- <div class="container  col-12 align-self-start d-flex justify-content-center">
-    <div class="row bg-dark col-4 justify-content-center ">
-
-         <div class="d-flex col-12 justify-content-center text-warning">
+<div class="row col-12 justify-content-center mt-5">
+	<div class="shadow-lg card shadow-lg border-success text-white-50 bg-dark py-2 px-5 mt-3 " style="width: 24rem;">
 
 <form action="{% url 'UsersCreateView' %}" method="post">
     {% csrf_token %}
@@ -16,22 +14,25 @@
     <p>{{ form.prof.label}}:<br>{{ form.prof }}</p>
     <p>{{ form.uch.label}}:<br>{{ form.uch }}</p>
 
-    {% for p2 in pps %}
+    {% for p2 in Ptemp %}
     <input type="hidden" name="pp" class="form-control" id="id_pp" value="{{ p2.id }}">
      {% endfor %}
-     {% for p2 in shus %}
+     {% for p2 in users_list %}
     <input type="hidden" name="shu" class="form-control" id="id_shu" value="{{ p2.id }}">
      {% endfor %}
-<center><input type="submit" value="Добавить"></center>
-
-    {% for p2 in pps %}
+<center>
+    <button class="btn btn-success" type="submit">Добавить</button>
+</center>
+<!--
+    {% for p2 in Ptemp %}
 
               <p>{{ p2.name}}<br></p>
                  <p>{{ p2.shu}}<br></p>
              {% endfor %}
+             -->
 </form>
 
-         </div>
+
     </div>
  </div>
     {% endblock %}
