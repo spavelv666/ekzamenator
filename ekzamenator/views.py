@@ -9,9 +9,77 @@ from django.urls import  reverse_lazy, reverse
 from  django.views.generic.edit import CreateView
 from  django.contrib import auth
 from  django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UsersForm, UpdateForm
+from .forms import UsersForm, UpdateForm, UchForm
 from  .models import Users, Pp, Uch, Shu
 from django.contrib.auth.models import User
+
+class UchListView(LoginRequiredMixin, ListView):
+   """Список фильмов"""
+   model = Uch
+   queryset = Uch.objects.all()
+   template_name = 'ekzamenator/uch_list.html'
+   paginate_by = 10
+
+   def get_context_data(self, **kwargs):
+       ppp = Pp.objects.filter(user=self.request.user)
+       new_uch = Uch.objects.filter(pp=ppp[0])
+
+       context = super(UchListView, self).get_context_data(**kwargs)
+       # Добавляем новую переменную к контексту и иниуиализируем ее некоторым значением
+       #   pp = Pp.object.all().name
+       context['Ptemp'] = ppp
+       context['uch_list'] = new_uch
+       return context
+
+
+
+
+class UchUpdate(LoginRequiredMixin, UpdateView):
+    model = Uch
+   # slug_field = "pk"
+    #form_class = UsersForm
+    form_class = UchForm
+    template_name = "ekzamenator/update_uch.html"
+    success_url = reverse_lazy("Uch_List")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ppp = Pp.objects.filter(user=self.request.user)
+        shus = Shu.objects.filter(pp=ppp[0])
+        context['Ptemp'] = ppp
+        context['users_list'] = shus
+        return context
+
+
+class UchCreateView(LoginRequiredMixin, CreateView):
+   template_name = 'ekzamenator/add_uch.html'
+   form_class = UchForm
+   success_url = reverse_lazy("Uch_List")
+
+   def get_context_data(self, **kwargs):
+       context = super().get_context_data(**kwargs)
+       ppp = Pp.objects.filter(user=self.request.user)
+       shus = Shu.objects.filter(pp=ppp[0])
+       context['Ptemp'] = ppp
+       context['users_list'] = shus
+       return context
+
+
+class UchDelete(LoginRequiredMixin, View):
+    def get(self, request, id):
+        uch = get_object_or_404(Uch, id=id)
+        ppp = Pp.objects.filter(user=self.request.user)
+        shus = Shu.objects.filter(pp=ppp[0])
+
+        return render(request, 'ekzamenator/delete_uch.html',
+                     context={'uch':uch, 'Ptemp': ppp, 'users_list': shus})
+
+    def post(self, request, id):
+        uch = get_object_or_404(Uch, id=id)
+        uch.delete()
+        return redirect(reverse("Uch_List"))
+
+
 class UsersView(LoginRequiredMixin, ListView):
    """Список фильмов"""
    model = Users
@@ -73,6 +141,8 @@ class UsersCreateView(LoginRequiredMixin, CreateView):
        kwargs = super(UsersCreateView, self).get_form_kwargs()
        kwargs.update({'user': self.request.user})
        return kwargs
+
+
 """
 class UsersUpdate(LoginRequiredMixin, View):
    def get(self, request, id):
@@ -120,6 +190,10 @@ class UsersUpdate(LoginRequiredMixin, UpdateView):
         context['users_list'] = shus
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(UsersUpdate, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 class Search(ListView):
     """Поиск Людей"""
@@ -154,6 +228,5 @@ def PpViewList(request):
     #names = list.listings.name
     context = {'listings': listings}
     return render(request, 'ekzamenator/pp_view.html', context)
-
 
 

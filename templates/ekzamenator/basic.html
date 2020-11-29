@@ -5,13 +5,25 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" type="images/x-icon" href="img/favicon.png">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<meta name="keywords" content="Свердловск, svkmarket, ЛНР, объявления, маркет, покупки, Aliexpress, shop, market, заказы, бизнесс, заработать, разработка сайтов, услуги" />
+<link rel="shortcut icon" type="images/x-icon" href="{% static 'favicon.ico' %}">
+ <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Bootstrap-Core-CSS -->
+    <!--/ Style-CSS
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    -->
+    <!--// Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+
+
+
+    <!--
+    <meta name="keywords" content="Свердловск, svkmarket, ЛНР, объявления, маркет, покупки, Aliexpress, shop, market, заказы, бизнесс, заработать, разработка сайтов, услуги" />
 <meta name="description" content="Заказы с Aliexpress, выгодное предложение, быстрая доставка, бесплатные объявления, канал Telegram @svkmarker, электронная комерция">
 
-
+-->
 |<style>
 footer {
     position: absolute;
@@ -40,21 +52,37 @@ html,body{
 <div class="container col-12">
 	<div class="row bg-dark">
 
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark col-12 fixed-top">
-			<div class="col-4">
+			<div class="col-1">
+
+				<a class="navbar-brand text-success" href="/" data-placement="top" title="Главная страница"><img src="/static/logo.png" width="32" height="32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a>
+                		</div>
+              <div class="col-3 text-success">
+                    <table>
+<tbody>
+    <tr><td>{% for p1 in Ptemp %} {{ p1.name }}{% endfor %}</td></tr>
+    <tr><td>
+                <div class="text-warning">
+          {% block title %}
+
+    {% endblock %}
+                </div>
+        </td></tr>
+ </tbody>
+</table>
+
+
+</div>
 
 
 
-
-				<a class="navbar-brand text-success" href="/"><img src="/static/logo.png" width="32" height="32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   {% for p1 in Ptemp %} {{ p1.name }}{% endfor %}</a>
-
-			</div>
 
 {% if user.is_authenticated %}
-     <div class="col-4">
+     <div class="col-3">
   <form action="{% url 'search' %}" method="get" class="d-flex editContent">
-        <input type="search" placeholder="Введите номер..." name="q" class="form-control" required="">
+        <input type="search" placeholder="Введите номер или ФИО" name="q" class="form-control" required="">
         <button type="submit"  class="btn btn-success">
             <span class="fa fa-search" aria-hidden="true"></span>
         </button>
@@ -63,7 +91,7 @@ html,body{
 
 
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
- <span class="navbar-toggler-icon"></span>
+  <span class="fa fa-bars" aria-hidden="true"></span>
  </button>
 
  <!--Само меню-->
@@ -73,14 +101,18 @@ html,body{
 
  <ul class="navbar-nav ml-auto  d-flex justify-content-end">
 
-            <li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
+
         	<li class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                <a class="nav-link dropdown-toggle" data-placement="top" title="Управление работниками" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Работник</a>
         <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-             <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
-            <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
+             <a class="dropdown-item text-warning" href="/ekzamen/usersview/" data-placement="top" title="Просмотр списка работников" >
+                 <span class="fa fa-users fa-1x" aria-hidden="true"></span>
+                 Все</a>
+            <a class="dropdown-item text-warning" href="/ekzamen/add/" data-placement="top" title="Добавить работника" >
+                  <span class="fa fa-user-plus fa-1x" aria-hidden="true"></span>
+                                Добавить</a>
 
 
         </div>
@@ -88,17 +120,36 @@ html,body{
             </li>
      <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="/ekzamen/ppview/"  id="navbarDropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Участки</a>
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="top" title="Управление участками" >Участки</a>
 
 
        <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-             <a class="dropdown-item text-warning" href="/ekzamen/usersview/">Все</a>
-            <a class="dropdown-item text-warning" href="/ekzamen/add/">Добавить</a>
+             <a class="dropdown-item text-warning" href="/ekzamen/uchlist/" data-placement="top" title="Просмотр списка участков" >
+                            <span class="fa fa-list-ol" aria-hidden="true"></span>
+                 Все</a>
+            <a class="dropdown-item text-warning" href="/ekzamen/uchadd/" data-placement="top" title="Добавить участок">
+                              <span class="fa fa-plus-square" aria-hidden="true"></span>
+                Добавить</a>
 
 
         </div>
 </li>
+   <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="/ekzamen/ppview/"  id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="top" title="Управление профессиями">Профессии</a>
 
+
+       <div class="bg-dark dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+             <a class="dropdown-item text-warning" href="/ekzamen/uchlist/" data-placement="top" title="Просмотр списка профессий">
+                     <span class="fa fa-list-ol" aria-hidden="true"></span>
+                 Все</a>
+            <a class="dropdown-item text-warning" href="/ekzamen/uchadd/" data-placement="top" title="Добавить профессию">
+                 <span class="fa fa-plus-square" aria-hidden="true"></span>
+                Добавить</a>
+
+
+        </div>
+</li>
         	<li class="nav-item"><a href="/ekzamen/ppview/" class="nav-link">Отчеты</a></li>
 
 
@@ -107,7 +158,7 @@ html,body{
      <li class="nav-item"><a href="/" class="nav-link text-info"> {% for p1 in Ptemp %} {{ p1.user }}{% endfor %}</a></li>
 
 
-		<li class="active nav-item"><a href="{% url 'logout'%}" class="nav-link ">Выход</a></li>
+		<li class="active nav-item"><a href="{% url 'logout'%}" class="nav-link" data-placement="left" title="Выйти из учетной записи">Выход</a></li>
         </ul>
  </div><!-- /.navbar-collapse -->
     {% endif %}
@@ -132,6 +183,9 @@ html,body{
   <!--
   начало блока
   -->
+
+
+
 
     {% block content %}
 

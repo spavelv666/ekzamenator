@@ -1,4 +1,6 @@
 {% extends "ekzamenator/basic.html" %}
+
+
 {% block content %}
 
 
@@ -19,7 +21,9 @@
 
 <tr>
 <td>{{ p1.nomer }}</td>
-<td><a href="{{ p1.get_absolute_url }}" class="editContent">{{ p1.name }}</a></td>
+<td><a href="{{ p1.get_absolute_url }}" class="editContent">
+    <span class="fa fa-user fa-1x" aria-hidden="true"></span>
+    {{ p1.name }}</a></td>
 <td>{{ p1.uch }}</td>
     <td>{{ p1.prof }}</td>
 
@@ -76,9 +80,8 @@
 </div>
 </div>
 {% endblock %}
+          {% block title %}
+Список работников шахты
+    {% endblock %}
 
 
-
-{% block title %}
-
-{% endblock %}

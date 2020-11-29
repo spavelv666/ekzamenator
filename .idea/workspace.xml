@@ -4,15 +4,15 @@
     <list default="true" id="32cae89c-1bc1-40bc-a5a5-9748cff6fbfb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ekzamen/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ekzamen/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ekzamenator/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ekzamenator/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ekzamenator/urls_ekzamen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ekzamenator/urls_ekzamen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ekzamenator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ekzamenator/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ekzamenator/add_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ekzamenator/add_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/font-awesome.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/ekzamenator/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ekzamenator/basic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ekzamenator/delete_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ekzamenator/delete_user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ekzamenator/update_user.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/ekzamenator/users_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ekzamenator/users_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/ekzamenator/users_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ekzamenator/users_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
